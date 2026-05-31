@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>吳冠廷 作品集</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0f2244;
+    --navy-mid: #1b3a6b;
+    --blue: #2563be;
+    --blue-light: #3b82f6;
+    --blue-pale: #e8f0fc;
+    --accent: #c9a84c;
+    --text: #1a1a2e;
+    --text-muted: #6b7280;
+    --bg: #f8f9fc;
+    --white: #ffffff;
+    --border: rgba(0,0,0,0.08);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--navy);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(37,99,190,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -100px; left: -100px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.1s forwards;
+  }
+
+  .hero-name {
+    font-family: 'Noto Serif TC', serif;
+    font-size: clamp(48px, 8vw, 80px);
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.25s forwards;
+  }
+
+  .hero-tagline {
+    font-size: clamp(15px, 2vw, 18px);
+    color: rgba(255,255,255,0.55);
+    font-weight: 300;
+    margin-bottom: 40px;
+    max-width: 540px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.4s forwards;
+  }
+
+  .hero-tagline em {
+    font-style: normal;
+    color: rgba(255,255,255,0.85);
+    font-weight: 400;
+  }
+
+  .hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.55s forwards;
+  }
+
+  .htag {
+    font-size: 11.5px;
+    padding: 5px 14px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.7);
+    letter-spacing: 0.3px;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.7s forwards;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 12px 26px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+    font-family: inherit;
+  }
+
+  .btn-primary {
+    background: var(--blue);
+    color: #fff;
+  }
+  .btn-primary:hover { background: var(--blue-light); }
+
+  .btn-outline {
+    background: transparent;
+    color: rgba(255,255,255,0.7);
+    border: 1px solid rgba(255,255,255,0.25);
+  }
+  .btn-outline:hover { border-color: rgba(255,255,255,0.6); color: #fff; }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255,255,255,0.3);
+    font-size: 11px;
+    letter-spacing: 1px;
+    animation: fadeUp 1s 1.2s both;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  /* ── SECTION ── */
+  .section {
+    padding: 100px 48px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+
+  .section-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: clamp(26px, 4vw, 36px);
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 48px;
+    line-height: 1.3;
+  }
+
+  /* ── ABOUT ── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .about-text p {
+    color: var(--text-muted);
+    margin-bottom: 16px;
+    font-size: 15px;
+    line-height: 1.85;
+  }
+
+  .about-text p strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .about-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .stat-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 20px;
+    background: var(--white);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+  }
+
+  .stat-num {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--navy);
+    min-width: 64px;
+    line-height: 1;
+  }
+
+  .stat-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  .stat-desc strong { color: var(--text); font-weight: 500; display: block; }
+
+  /* ── WORKS ── */
+  .works-section { background: var(--white); }
+  .works-inner { max-width: 960px; margin: 0 auto; padding: 100px 48px; }
+
+  .work-item {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 48px;
+    padding: 48px 0;
+    border-bottom: 1px solid var(--border);
+    align-items: start;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s, transform 0.6s;
+  }
+
+  .work-item.visible { opacity: 1; transform: none; }
+  .work-item:last-child { border-bottom: none; }
+
+  .work-meta-col { position: sticky; top: 100px; }
+
+  .work-num {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--blue-pale);
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+
+  .work-category {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--blue);
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+
+  .work-org {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+  }
+
+  .work-award {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    padding: 4px 10px;
+    background: #fef9ec;
+    color: #92600a;
+    border-radius: 20px;
+    border: 1px solid #f0d890;
+    margin-bottom: 6px;
+    display: block;
+    width: fit-content;
+  }
+
+  .work-content-col {}
+
+  .work-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 16px;
+    line-height: 1.4;
+  }
+
+  .work-desc {
+    font-size: 14.5px;
+    color: var(--text-muted);
+    line-height: 1.9;
+    margin-bottom: 24px;
+  }
+
+  .work-result {
+    background: var(--blue-pale);
+    border-left: 3px solid var(--blue);
+    border-radius: 0 6px 6px 0;
+    padding: 14px 18px;
+    margin-bottom: 24px;
+  }
+
+  .work-result-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--blue);
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+
+  .work-result-text {
+    font-size: 13.5px;
+    color: var(--navy);
+    font-weight: 400;
+    line-height: 1.7;
+  }
+
+  .work-skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+
+  .skill-tag {
+    font-size: 11px;
+    padding: 3px 10px;
+    background: var(--bg);
+    color: var(--text-muted);
+    border-radius: 20px;
+    border: 1px solid var(--border);
+  }
+
+  .work-link {
+    font-size: 13px;
+    color: var(--blue);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .work-link:hover { border-color: var(--blue); }
+
+  /* ── MORE WORKS ── */
+  .more-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+    margin-top: 12px;
+  }
+
+  .more-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 18px 20px;
+    text-decoration: none;
+    transition: box-shadow 0.2s, transform 0.2s;
+    display: block;
+  }
+
+  .more-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.07); transform: translateY(-2px); }
+
+  .more-icon { font-size: 20px; margin-bottom: 10px; }
+  .more-title { font-size: 13px; font-weight: 500; color: var(--navy); margin-bottom: 4px; }
+  .more-sub { font-size: 11.5px; color: var(--text-muted); line-height: 1.5; }
+
+  /* ── SKILLS ── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .skill-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 24px;
+  }
+
+  .skill-card-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .skill-list { list-style: none; }
+  .skill-list li {
+    font-size: 13px;
+    color: var(--text-muted);
+    padding: 5px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .skill-list li::before { content: '—'; color: var(--blue); font-size: 12px; }
+
+  /* ── CONTACT ── */
+  .contact-section {
+    background: var(--navy);
+    padding: 100px 48px;
+    text-align: center;
+  }
+
+  .contact-inner { max-width: 600px; margin: 0 auto; }
+
+  .contact-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .contact-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 34px;
+    color: #fff;
+    margin-bottom: 16px;
+    font-weight: 700;
+  }
+
+  .contact-sub {
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 40px;
+  }
+
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .contact-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 22px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 400;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .cbtn-email { background: var(--blue); color: #fff; }
+  .cbtn-email:hover { background: var(--blue-light); }
+  .cbtn-other { background: transparent; border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.7); }
+  .cbtn-other:hover { border-color: rgba(255,255,255,0.5); color: #fff; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 48px;
+    background: transparent;
+    transition: background 0.3s, backdrop-filter 0.3s;
+  }
+
+  nav.scrolled {
+    background: rgba(15,34,68,0.92);
+    backdrop-filter: blur(12px);
+  }
+
+  .nav-logo {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 16px;
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a {
+    font-size: 12px;
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: #fff; }
+
+  /* ── DIVIDER ── */
+  .page-divider { height: 1px; background: var(--border); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: none; }
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.8; }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 700px) {
+    .hero, .section, .works-inner, .contact-section { padding-left: 24px; padding-right: 24px; }
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .about-grid, .skills-grid { grid-template-columns: 1fr; gap: 32px; }
+    .work-item { grid-template-columns: 1fr; gap: 20px; }
+    .work-meta-col { position: static; }
+    .work-num { font-size: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="#" class="nav-logo">吳冠廷</a>
+  <div class="nav-links">
+    <a href="#about">關於我</a>
+    <a href="#skills">技能</a>
+    <a href="#works">作品</a>
+    <a href="#contact">聯絡</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Portfolio · 2026</p>
+    <h1 class="hero-name">吳冠廷</h1>
+    <p class="hero-tagline">
+      <em>用新聞的眼睛看議題，化繁為簡，說好故事</em><br>
+      政治大學傳播碩士學位學程｜新聞系背景，具備深度內容創作、社群經營與影音製作實戰經驗。
+    </p>
+    <div class="hero-tags">
+      <span class="htag">社群內容規劃</span>
+      <span class="htag">議題轉譯</span>
+      <span class="htag">影音製作</span>
+      <span class="htag">活動企劃</span>
+      <span class="htag">新聞採訪寫作</span>
+    </div>
+    <div class="hero-cta">
+      <a href="#works" class="btn btn-primary">查看作品</a>
+      <a href="#contact" class="btn btn-outline">聯絡我</a>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    <span>SCROLL</span>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <p class="section-label">About</p>
+  <h2 class="section-title">用內容說故事的人，<br>希望成為轉譯複雜科技的橋樑</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>在新聞系的四年，我學會一件事：<strong>再複雜的議題，都要想辦法找到讓人想看下去的切入點。</strong></p>
+      <p>系上課程中製作漁電共生的專題，南下台南，訪問當地漁民和學者，把涉及政治、經濟、生態的複雜議題，寫成讀者能理解的故事——拿到第三十七屆吳舜文新聞獎學生新聞報導獎、第七屆全球華文永續報導獎學生組平面類優等。鳥類不當攝影的報導，獲得第四十九屆曾虛白先生暨台電大專院校學生環境與生態永續報導獎平面首獎。</p>
+      <p>在《遠見雜誌》擔任編輯部實習記者，負責國政文教與 ESG 組，產出 12 篇 Web 稿與 1 個數位專題，從媒體端深入理解 ESG 議題的傳播邏輯。</p>
+      <p>在校內媒體《銘報》擔任網編組副組長，同時負責文字採訪與 FB 社群經營，把同一個議題轉化成不同平台的語言——每週追蹤觸及率，讓我意識到「內容」和「傳播策略」是兩件需要同時思考的事。</p>
+      <p>現就讀<strong>政治大學傳播碩士學位學程一年級</strong>，同時在<strong>台灣事實查核中心</strong>實習，持續鍛鍊資訊判斷與議題分析能力。</p>
+    </div>
+    <div class="about-stats">
+      <div class="stat-row">
+        <div class="stat-num">37</div>
+        <div class="stat-desc"><strong>累積新聞稿件</strong>銘報25篇＋遠見12篇，政治、環境、ESG、科技領域</div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-num">4</div>
+        <div class="stat-desc"><strong>媒體實習/工讀</strong>公視‧自由時報‧遠見‧台灣事實查核中心</div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-num">6</div>
+        <div class="stat-desc"><strong>新聞獎項入圍／獲獎</strong>含吳舜文、曾虛白、華文永續報導獎</div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-num">2</div>
+        <div class="stat-desc"><strong>影音與多媒體企劃</strong>擔任校內電視台企劃部長，熟悉Premiere影音製作，製作影音節目及podcast</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="page-divider"></div>
+
+<!-- SKILLS -->
+<section class="section" id="skills">
+  <p class="section-label">Skills</p>
+  <h2 class="section-title">技能</h2>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-card-title">內容與行銷</div>
+      <ul class="skill-list">
+        <li>社群內容規劃與排程</li>
+        <li>成效追蹤與數據分析</li>
+        <li>新聞採訪與深度寫作</li>
+        <li>議題研究與轉譯</li>
+        <li>活動企劃與執行</li>
+      </ul>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title">軟體工具</div>
+      <ul class="skill-list">
+        <li>Premiere Pro（熟練）</li>
+        <li>InDesign（熟練）</li>
+        <li>Photoshop（基礎）</li>
+        <li>PowerPoint（實用級）</li>
+        <li>Meta Business Suite（基礎）</li>
+      </ul>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title">獎項</div>
+      <ul class="skill-list">
+        <li>吳舜文新聞獎學生新聞報導獎</li>
+        <li>第四十九屆曾虛白先生暨台電大專院校學生環境與生態永續報導獎平面首獎</li>
+        <li>全球華文永續報導獎學生組平面類優等</li>
+        <li>畢業專題特優獎</li>
+        <li>四校新聞系聯合影展優秀作品</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="page-divider"></div>
+
+<!-- WORKS -->
+<div class="works-section" id="works">
+  <div class="works-inner">
+    <p class="section-label">Selected Works</p>
+    <h2 class="section-title">精選作品</h2>
+
+    <!-- Work 01 -->
+    <div class="work-item">
+      <div class="work-meta-col">
+        <div class="work-num">01</div>
+        <div class="work-category">媒體實習 × ESG內容</div>
+        <div class="work-org">遠見雜誌<br>編輯部實習記者　2024 暑假</div>
+      </div>
+      <div class="work-content-col">
+        <h3 class="work-title">遠見雜誌 ESG ＆ 國政文教組實習</h3>
+        <p class="work-desc">
+          在國內財經媒體《遠見雜誌》擔任編輯部實習記者，負責國政文教與 ESG 組報導。獨立產出 12 篇 Web 稿與 1 個數位專題，題材涵蓋交通政策、師培制度、石化汙染與永續議題。<br><br>
+          代表作包含：探討台灣高鐵北延宜蘭的交通政策分析、深入師培制度崩解的結構性問題、以及揭露石化廠擴建對周邊居民健康影響的 ESG 調查報導。
+        </p>
+        <div class="work-result">
+          <div class="work-result-label">代表作品</div>
+          <div class="work-result-text">「新四輕擴建衝擊健康？報告曝塑膠過剩代價，910萬人困在石化空汙下」、「難解國5塞車，交通學者：高鐵北延宜蘭恐讓兩鐵雙輸」、數位專題「823罷免終局之戰」</div>
+        </div>
+        <div class="work-skill-tags">
+          <span class="skill-tag">Web 稿撰寫</span>
+          <span class="skill-tag">ESG 議題報導</span>
+          <span class="skill-tag">數位專題製作</span>
+          <span class="skill-tag">政策深度分析</span>
+        </div>
+        <a href="https://esg.gvm.com.tw/article/99223" target="_blank" class="work-link">查看 ESG 報導 →</a>
+        &nbsp;&nbsp;
+        <a href="https://www.gvm.com.tw/topic/2308" target="_blank" class="work-link">查看數位專題 →</a>
+      </div>
+    </div>
+
+    <!-- Work 02 -->
+    <div class="work-item">
+      <div class="work-meta-col">
+        <div class="work-num">02</div>
+        <div class="work-category">社群經營 × 內容行銷</div>
+        <div class="work-org">銘傳大學銘報<br>網編副組長　2022–2023</div>
+      </div>
+      <div class="work-content-col">
+        <h3 class="work-title">銘報 FB 社群內容規劃與執行</h3>
+        <p class="work-desc">
+          擔任網編副組長期間，獨立規劃並執行 FB 粉絲專頁週更內容。將採訪報導轉化成適合社群傳播的形式，每週追蹤觸及率、互動數等數據指標，並根據成效調整下一週的內容策略。<br><br>
+          同期企劃並主持影音節目《今天玩什麼》共5集，介紹各類新聞遊戲；與校內電台合作製作 Podcast《閱chill》，邀請業界作者上節目分享出書心得。
+        </p>
+        <div class="work-result">
+          <div class="work-result-label">成果</div>
+          <div class="work-result-text">貼文觸及率與互動數穩定維持組內前二；跨平台內容（長文、社群貼文、影音、Podcast）同步運作，累積多媒體內容製作經驗</div>
+        </div>
+        <div class="work-skill-tags">
+          <span class="skill-tag">社群內容規劃</span>
+          <span class="skill-tag">數據追蹤與優化</span>
+          <span class="skill-tag">跨平台內容轉換</span>
+          <span class="skill-tag">影音企劃主持</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Work 03 (漁電共生) -->
+    <div class="work-item">
+      <div class="work-meta-col">
+        <div class="work-num">03</div>
+        <div class="work-category">深度內容 × 議題轉譯</div>
+        <div class="work-org">銘傳大學銘報<br>採訪組長　2022–2023</div>
+        <div style="margin-top:12px">
+          <span class="work-award">★ 吳舜文新聞獎首獎</span>
+          <span class="work-award" style="margin-top:6px">★ 華文永續報導獎優等</span>
+          <span class="work-award" style="margin-top:6px">★ 曾虛白永續報導獎入圍</span>
+        </div>
+      </div>
+      <div class="work-content-col">
+        <h3 class="work-title">漁電共生專題報導</h3>
+        <p class="work-desc">
+          為深入追蹤七股漁電共生發展現況，歷時半年以上持續採訪，3次前往台南七股田野，訪問17位漁民、學者、NGO與能源商，至七股漁民北上至行政院抗議現場跟訪、參與公聽會。<br><br>
+          主題橫跨能源政策、生態保育與地方經濟的交叉衝突——一個涉及政治、經濟、生態的複雜議題，最終轉化成讓讀者能理解並關心的完整報導，同步產出文字與影音兩種版本。
+        </p>
+        <div class="work-result">
+          <div class="work-result-label">核心貢獻</div>
+          <div class="work-result-text">擔任採訪組長，主導專題規劃、進度控管、資料調查與採訪執行；並協調團隊進行影音新聞拍攝與後期剪輯</div>
+        </div>
+        <div class="work-skill-tags">
+          <span class="skill-tag">長期追蹤報導</span>
+          <span class="skill-tag">複雜議題簡化表達</span>
+          <span class="skill-tag">多媒體製作</span>
+          <span class="skill-tag">田野調查</span>
+        </div>
+        <a href="https://reurl.cc/edWGkW" target="_blank" class="work-link">查看報導 →</a>
+      </div>
+    </div>
+
+    <!-- Work 04 -->
+    <div class="work-item">
+      <div class="work-meta-col">
+        <div class="work-num">04</div>
+        <div class="work-category">深度內容 × 倡議報導</div>
+        <div class="work-org">銘傳大學銘報<br>採訪組長　2022–2023</div>
+        <div style="margin-top:12px">
+          <span class="work-award">★ 曾虛白永續報導獎首獎</span>
+          <span class="work-award" style="margin-top:6px">★ 第七屆華文永續報導獎入圍</span>
+        </div>
+      </div>
+      <div class="work-content-col">
+        <h3 class="work-title">鳥類攝影歪風專題報導</h3>
+        <p class="work-desc">
+          近年不當拍攝案例頻傳——業者以大頭針固定生物誘拍鳥類，或將鳥類禁錮籠中、搭景棚拍攝，甚至在烈日下擺拍雛鳥求救行為。<br><br>
+          擔任採訪組長，負責整體新聞規劃與採訪。報導完成後持續追蹤一年，與學者、專家研討並參考相關社團規範，訂定「鳥類生態攝影十大準則」。
+        </p>
+        <div class="work-result">
+          <div class="work-result-label">具體影響</div>
+          <div class="work-result-text">   　過程中擔任組長新聞規劃與採訪，後續在報導過後一年，經過與學者和專家的研議並參考相關社團的鳥類拍攝規範後，訂定鳥類生態攝影十大準則，國家地理臺灣攝影大賽也再度重啟鳥類作品收件</div>
+        </div>
+        <div class="work-skill-tags">
+          <span class="skill-tag">議題倡議</span>
+          <span class="skill-tag">專題報導內容企劃</span>
+          <span class="skill-tag">多媒體製作</span>
+          <span class="skill-tag">環境生態</span>
+        </div>
+        <a href="https://reurl.cc/5O8DYM" target="_blank" class="work-link">查看報導 →</a>
+      </div>
+    </div>
+
+    <!-- Work 05 -->
+    <div class="work-item">
+      <div class="work-meta-col">
+        <div class="work-num">05</div>
+        <div class="work-category">活動企劃 × 行銷策略</div>
+        <div class="work-org">懷世代 2022<br>青年公益企劃比賽</div>
+        <div style="margin-top:12px">
+          <span class="work-award">★ 入圍第二波獲選團隊</span>
+        </div>
+      </div>
+      <div class="work-content-col">
+        <h3 class="work-title">生命探索之旅——《告別任務》活動企劃</h3>
+        <p class="work-desc">
+          以「思考死亡是為了活得更好，學會告別是為了下一個旅程」為核心命題，設計完整的行銷活動方案。針對華人社會對死亡議題的禁忌心態，選擇以輕鬆遊戲的方式切入，降低年輕人接觸生死教育的心理門檻。<br><br>
+          企劃包含：影片宣傳策略（拍攝生死相關系列影片）、體驗活動設計（劇本殺、密室逃脫、桌遊形式）、社會效益評估框架。
+        </p>
+        <div class="work-result">
+          <div class="work-result-label">企劃亮點</div>
+          <div class="work-result-text">完整涵蓋「宣傳策略 → 活動體驗設計 → 社會效益」的行銷思路，從受眾洞察出發，設計觸及目標族群的傳播方式</div>
+        </div>
+        <div class="work-skill-tags">
+          <span class="skill-tag">活動企劃執行</span>
+          <span class="skill-tag">品牌傳播策略</span>
+          <span class="skill-tag">目標受眾設計</span>
+          <span class="skill-tag">社會效益評估</span>
+        </div>
+        <a href="https://drive.google.com/file/d/1W3UcTNd2veZPXP7Hooq8m_2UBIXhnSqC/view?usp=sharing" target="_blank" class="work-link">查看企劃 →</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- MORE WORKS -->
+<section class="section">
+  <p class="section-label">More Works</p>
+  <h2 class="section-title">其他作品</h2>
+  <div class="more-grid">
+    <a href="https://www.gvm.com.tw/article/123182" target="_blank" class="more-card">
+      <div class="more-icon">🚄</div>
+      <div class="more-title">遠見｜高鐵北延宜蘭</div>
+      <div class="more-sub">交通政策分析<br>國政文教組</div>
+    </a>
+    <a href="https://www.gvm.com.tw/article/122796" target="_blank" class="more-card">
+      <div class="more-icon">👩‍🏫</div>
+      <div class="more-title">遠見｜師培制度報導</div>
+      <div class="more-sub">教師從理想走向失落<br>師培轉型十字路口</div>
+    </a>
+    <a href="https://reurl.cc/z6rpdk" target="_blank" class="more-card">
+      <div class="more-icon">🔬</div>
+      <div class="more-title">人物專訪：陳璽尹</div>
+      <div class="more-sub">台灣科技媒體中心執行長<br>科學新聞的後勤部隊</div>
+    </a>
+    <a href="https://reurl.cc/6QLjoy" target="_blank" class="more-card">
+      <div class="more-icon">📷</div>
+      <div class="more-title">人物專訪：柯金源</div>
+      <div class="more-sub">環境報導導演<br>用鏡頭守護環境30年</div>
+    </a>
+    <a href="https://reurl.cc/MyR3Lm" target="_blank" class="more-card">
+      <div class="more-icon">🎬</div>
+      <div class="more-title">今天玩什麼 EP1–5</div>
+      <div class="more-sub">影音節目企劃＋主持<br>新聞遊戲主題</div>
+    </a>
+    <a href="https://health.ltn.com.tw/article/breakingnews/4764219" target="_blank" class="more-card">
+      <div class="more-icon">📰</div>
+      <div class="more-title">自由時報健康網</div>
+      <div class="more-sub">工讀生撰稿<br>點閱率破萬文章</div>
+    </a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div class="contact-section" id="contact">
+  <div class="contact-inner">
+    <p class="contact-label">Contact</p>
+    <h2 class="contact-title">聯絡我</h2>
+    <p class="contact-sub">歡迎來信洽談實習機會，或索取完整版履歷 PDF。</p>
+    <div class="contact-links">
+      <a href="mailto:tim74184@gmail.com" class="contact-btn cbtn-email">✉ tim74184@gmail.com</a>
+      <a href="tel:0966228033" class="contact-btn cbtn-other">📞 0966-228-033</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  const items = document.querySelectorAll('.work-item');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 100);
+      }
+    });
+  }, { threshold: 0.1 });
+  items.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
